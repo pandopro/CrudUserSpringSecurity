@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<h1>
+    <table cellpadding="10" border="1" width="80%" align="center" bgcolor="#ffcc00">
+        <caption>Users list</caption>
+        <colgroup>
+            <col span="1" style="background:Khaki">
+            <!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+            <col span="2" style="background-color:LightCyan">
+            <!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+        </colgroup>
+        <thead>
+        <tr>
+            <th> №</th>
+            <th> name</th>
+            <th> lastname</th>
+            <th> number</th>
+            <th> Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.empty}">
+            <td colspan="2"> No Users Available</td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td><span th:text="${user.getId()}"> № </span></td>
+            <td><span th:text="${user.getName()}"> name </span></td>
+            <td><span th:text="${user.getLastname()}"> lastname </span></td>
+            <td><span th:text="${user.getNumber()}"> number </span></td>
+            <td>
+                <a th:href="@{/delete(id=${user.id})}">Delete</a>
+                <a th:href="@{/edit(id=${user.id})}">Edit</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</h1>
+<div>
+
+</div>
+</body>
+</html>
