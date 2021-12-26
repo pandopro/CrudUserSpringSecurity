@@ -1,5 +1,6 @@
 package web.dao;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import web.model.User;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface IUserDAO {
 
     List<User> listUsers();
 
-    List<User> findUser(String model, String series);
+    UserDetails loadUserByUsername(String s);
 }

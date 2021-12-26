@@ -5,6 +5,9 @@
     <title>Main page</title>
 </head>
 <body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"></input>
+</form>
 <h1>
     <table cellpadding="10" border="1" width="80%" align="center" bgcolor="#ffcc00">
         <caption>Users list</caption>
@@ -33,8 +36,8 @@
             <td><span th:text="${user.getLastname()}"> lastname </span></td>
             <td><span th:text="${user.getNumber()}"> number </span></td>
             <td>
-                <a th:href="@{/delete(id=${user.id})}">Delete</a>
-                <a th:href="@{/edit(id=${user.id})}">Edit</a>
+                <a th:href="@{/admin/delete(id=${user.id})}">Delete</a>
+                <a th:href="@{/admin/edit(id=${user.id})}">Edit</a>
 
             </td>
         </tr>

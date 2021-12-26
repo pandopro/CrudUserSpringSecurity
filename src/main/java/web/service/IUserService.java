@@ -15,5 +15,4 @@ public interface IUserService {
 
     List<User> listUsers();
 
-    List<User> findUser(String model, String series);
 }

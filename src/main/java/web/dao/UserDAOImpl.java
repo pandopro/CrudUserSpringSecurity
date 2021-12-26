@@ -1,5 +1,6 @@
 package web.dao;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,7 @@ public class UserDAOImpl implements IUserDAO {
     @Transactional
     @Override
     public void add(User user) {
-        System.out.println(user.toString());
+        //  System.out.println(user.toString());
         entityManager.persist(user);
     }
 
@@ -49,13 +50,10 @@ public class UserDAOImpl implements IUserDAO {
 
     @Transactional
     @Override
-    public List<User> findUser(String model, String series) {
-
-        Query query = entityManager
-                .createQuery("from User where car.model = (?1) and car.series = (?2)");
-        query.setParameter(1, model);
-        query.setParameter(2, series);
-        return query.getResultList();
+    public UserDetails loadUserByUsername(String s) {
+        Query query = entityManager.createQuery("from User u where u.email = (?1)");
+        query.setParameter(1, s);
+        return (UserDetails) query.getSingleResult();
     }
 
 }
