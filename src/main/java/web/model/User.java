@@ -1,5 +1,6 @@
 package web.model;
 
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -36,6 +37,7 @@ public class User implements UserDetails {
     private String lastname;
     private String number;
     @Column(unique = true)
+    @NonNull
     private String email;
 
     public Set<Role> getRoles() {
@@ -45,13 +47,15 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
+    @NonNull
     private String password;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //, cascade = CascadeType.ALL
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private Set<Role> roles;
 
     public Long getId() {

@@ -21,10 +21,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException, ServletException {
-//       сделать редирект пользователя с ролью админ на подсайт админ
-//                а юзера на юзер
-//
-//        httpServletResponse.sendRedirect("/go");
+
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         authorities.forEach(authority -> {
             if (authority.getAuthority().equals("ROLE_ADMIN")) {

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import web.service.IUserService;
+import web.service.UserService;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +17,15 @@ import java.util.List;
 @Controller
 public class MainController {
     @Autowired
-    private IUserService userService;
+    public MainController(UserService userService) {
+        this.userService = userService;
+    }
+
+    public MainController() {
+    }
+
+
+    private UserService userService;
 
     @GetMapping(value = "/admin")
     public String printUsers(ModelMap model) {
